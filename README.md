@@ -1,4 +1,4 @@
-# NagiosPluginBase
+# Nagios::PluginBase
 
 Base class of nagios plugin.
 
@@ -20,6 +20,8 @@ Or install it yourself as:
 
 ## Usage
 
+save as 'check_google.rb'
+
 ```ruby
 require 'nagios_plugin_base'
 require 'open-uri'
@@ -30,8 +32,13 @@ require 'open-uri'
 Nagios::PluginBase.check!(:timeout,:verbose,:url) do
   # if you set verbose, you can use attr_reader :verbose
   puts "start" if verbose
+
+  # prit out message and exit ( unknown )
+  invalid_args!("need url") unless url
+
   unless open(url).read =~ /Google/
     puts "document has not Google" if verbose
+
     # Methods critical! and warning! and ok! and unknown!,
     # print status and exit.
     critical!
@@ -41,8 +48,10 @@ Nagios::PluginBase.check!(:timeout,:verbose,:url) do
 end
 ```
 
+and run
+
 ```bash
-ruby check --url=https://www.google.com
+ruby check_google.rb --url=https://www.google.com
 ```
 
 ## Contributing
