@@ -5,12 +5,12 @@ require 'nagios_plugin_base/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "nagios_plugin_base"
-  spec.version       = NagiosPluginBase::VERSION
-  spec.authors       = ["TODO: Write your name"]
-  spec.email         = ["TODO: Write your email address"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.version       = Nagios::PluginBase::VERSION
+  spec.authors       = ["nazoking"]
+  spec.email         = ["nazoking@gmail.com"]
+  spec.summary       = %q{nagios plugin base class.}
+  spec.description   = %q{nagios plugin base class.}
+  spec.homepage      = "https://github.com/nazoking/nagios_plugin_base"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
