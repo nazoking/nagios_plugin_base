@@ -21,13 +21,16 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
+require 'nagios_plugin_base'
+require 'open-uri'
+
 # check is instant check method.
 # argumsnts is options( nagios-plugin default options )
 # block is check block.
-Nagios::PluginBase.check(:timeout,:verbose,:url) do
+Nagios::PluginBase.check!(:timeout,:verbose,:url) do
   # if you set verbose, you can use attr_reader :verbose
   puts "start" if verbose
-  unless open(url).read =~ "Google"
+  unless open(url).read =~ /Google/
     puts "document has not Google" if verbose
     # Methods critical! and warning! and ok! and unknown!,
     # print status and exit.

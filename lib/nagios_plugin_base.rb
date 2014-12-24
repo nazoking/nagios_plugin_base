@@ -1,5 +1,6 @@
 require "nagios_plugin_base/version"
 require 'optparse'
+require 'timeout'
 
 module Nagios
   class PluginBase
@@ -20,7 +21,7 @@ module Nagios
       :timeout        => ['-t','--timeout=VAL',Float],
       :port           => ['-p','--port=VAL',Integer],
       :logname        => ['-l','--logname=VAL'],
-      :url            => ['-u','--url'],
+      :url            => ['-u','--url=VAL'],
       :community      => ['-C','--community'],
     }
 
@@ -105,9 +106,6 @@ module Nagios
     rescue Timeout::Error => e
       puts "timeout"
       critical!
-    rescue => e
-      puts e.class, e
-      unknown!
     end
     # instant check
     def self.check!(*args,&block)
